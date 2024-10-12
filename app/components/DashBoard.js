@@ -1,44 +1,5 @@
 "use client";
 
-// components/BarChart.js
-// import React from 'react';
-// import { Bar } from 'react-chartjs-2';
-// import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
-
-// ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
-
-// const Dashboard = () => {
-//   const data = {
-//     labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-//     datasets: [
-//       {
-//         label: 'Sales',
-//         data: [65, 59, 80, 81, 56, 55],
-//         backgroundColor: 'rgba(75, 192, 192, 0.6)',
-//         borderColor: 'rgba(75, 192, 192, 1)',
-//         borderWidth: 1,
-//       },
-//     ],
-//   };
-
-//   const options = {
-//     responsive: true,
-//     plugins: {
-//       legend: {
-//         position: 'top',
-//       },
-//       title: {
-//         display: true,
-//         text: 'Monthly Sales Data',
-//       },
-//     },
-//   };
-
-//   return <Bar data={data} options={options} />;
-// };
-
-// export default Dashboard;
-
 import React from "react";
 import { Bar, Pie } from "react-chartjs-2";
 import {
@@ -65,20 +26,18 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
-  
   const salesData = orderData.reduce((acc, order) => {
     const orderDate = new Date(order.Order_Placed_Time);
-    
+
     if (!isNaN(orderDate.getTime())) {
-        const month = orderDate.toLocaleString("default", { month: "long" });
-    
-        order.Items.forEach((item) => {
-            acc[month] = (acc[month] || 0) + item.Total_Price;
-        });
+      const month = orderDate.toLocaleString("default", { month: "long" });
+
+      order.Items.forEach((item) => {
+        acc[month] = (acc[month] || 0) + item.Total_Price;
+      });
     }
     return acc;
-}, {});
-
+  }, {});
 
   const salesChartData = {
     labels: Object.keys(salesData),
@@ -93,7 +52,7 @@ const Dashboard = () => {
     ],
   };
 
-  console.log("salesChartData",salesChartData)
+  console.log("salesChartData", salesChartData);
 
   const orderTypesData = orderData.reduce((acc, order) => {
     acc[order.Order_Type] = (acc[order.Order_Type] || 0) + 1;
