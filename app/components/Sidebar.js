@@ -7,7 +7,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar bg-gray-800 text-white h-screen w-64 flex flex-col">
-      <div className="p-4 text-lg font-bold">My Resturent</div>
+      <div className="p-4 text-lg font-bold">My Restaurant</div>
       <ul className="flex-1 space-y-2 p-4">
         <li>
           <Link href="/">

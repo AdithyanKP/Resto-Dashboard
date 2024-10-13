@@ -8,11 +8,11 @@ import useDebounce from "../Hooks/UseDebounce";
 const Orders = () => {
   const [statusFilter, setStatusFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const debouncedSearchTerm = useDebounce(searchTerm, 400);
+  const debouncedSearchTerm = useDebounce(searchTerm, 300); // Adjust delay as needed
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
-  // filter search and sort func
+  // Memoized filtered, searched, and sorted orders
   const filteredOrders = useMemo(() => {
     return orderData
       .filter(
@@ -40,7 +40,7 @@ const Orders = () => {
   return (
     <Layout>
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-2xl font-bold text-gray-800 font-roboto">
             Orders
           </h1>
@@ -77,6 +77,7 @@ const Orders = () => {
             className="p-2 border border-gray-300 rounded-md bg-white shadow-sm focus:ring focus:outline-none w-full"
           />
         </div>
+
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
             <thead className="bg-gray-800 text-white">
@@ -84,19 +85,19 @@ const Orders = () => {
                 <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
                   Order ID
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
+                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto hidden sm:table-cell">
                   Customer Name
                 </th>
                 <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
                   Order Status
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
+                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto hidden md:table-cell">
                   Order Date
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
+                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto hidden lg:table-cell">
                   Total Items
                 </th>
-                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto">
+                <th className="px-6 py-3 text-left text-sm font-semibold font-roboto hidden lg:table-cell">
                   Total Price
                 </th>
               </tr>
@@ -117,7 +118,7 @@ const Orders = () => {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto">
                       {order.Order_ID}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto hidden sm:table-cell">
                       {order.Customer_Name}
                     </td>
                     <td
@@ -131,13 +132,13 @@ const Orders = () => {
                     >
                       {order.Order_Status}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto hidden md:table-cell">
                       {order.Order_Date}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto hidden lg:table-cell">
                       {order.Items.length}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-roboto hidden lg:table-cell">
                       {order.Items.reduce(
                         (acc, item) => acc + item.Total_Price,
                         0
@@ -149,6 +150,7 @@ const Orders = () => {
             </tbody>
           </table>
         </div>
+
         <div className="flex justify-between items-center mt-4">
           <button
             onClick={() => handlePageChange(currentPage - 1)}

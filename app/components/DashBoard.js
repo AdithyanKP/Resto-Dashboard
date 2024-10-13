@@ -104,8 +104,9 @@ const Dashboard = () => {
         {
           label: "Yearly Sales",
           data: Object.values(yearlySalesData),
-          backgroundColor: "rgba(75, 192, 192, 0.6)",
-          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(54, 162, 235, 0.6)",
+          borderColor: "rgba(54, 162, 235, 1)",
+
           borderWidth: 1,
         },
       ],
@@ -164,13 +165,13 @@ const Dashboard = () => {
   }, [orderData]);
 
   return (
-    <div className="flex flex-col marker: max-h-full overflow-y-auto p-6 space-y-8">
+    <div className="flex flex-col marker: max-h-full overflow-y-auto p-6 space-y-8 ">
       <div className="flex flex-col lg:flex-row justify-around">
         <div className="flex flex-col">
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Monthly Sales Data
           </h2>
-          <div className="flex justify-center mt-2">
+          <div className="flex justify-center mt-2 cursor-pointer">
             <Bar
               data={monthlySalesChartData}
               options={commonChartOptions}
@@ -182,7 +183,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Yearly Sales Data
           </h2>
-          <div className="flex justify-center mt-2">
+          <div className="flex justify-center mt-2 cursor-pointer">
             <Bar
               data={yearlyChartDataYearly}
               options={commonChartOptions}
@@ -196,7 +197,7 @@ const Dashboard = () => {
         <h2 className="flex justify-center text-2xl font-semibold text-gray-800 font-roboto">
           Order Types Distribution
         </h2>
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center mt-2 cursor-pointer">
           <Pie
             data={orderTypeChartData}
             options={{
@@ -215,7 +216,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Top 5 Items Sold
           </h2>
-          <div className="flex justify-center mt-2">
+          <div className="flex justify-center mt-2 cursor-pointer">
             <Bar
               data={topItemsChartData}
               options={{
@@ -231,7 +232,7 @@ const Dashboard = () => {
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Average Ratings of Food Items
           </h2>
-          <div className="flex justify-center mt-2">
+          <div className="flex justify-center mt-2 cursor-pointer">
             <Bar
               data={ratingsChartData}
               options={{
