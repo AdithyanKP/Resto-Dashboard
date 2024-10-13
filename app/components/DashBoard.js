@@ -14,6 +14,7 @@ import {
 } from "chart.js";
 
 import { orderData } from "../constants/data";
+import Header from "./DashBoardHeader";
 
 ChartJS.register(
   Title,
@@ -165,9 +166,12 @@ const Dashboard = () => {
   }, [orderData]);
 
   return (
-    <div className="flex flex-col marker: max-h-full overflow-y-auto p-6 space-y-8 ">
-      <div className="flex flex-col lg:flex-row justify-around">
-        <div className="flex flex-col">
+    <div className="flex w-full flex-col marker: max-h-full overflow-y-auto p-6 space-y-8 ">
+      <>
+        <Header orders={orderData} />
+      </>
+      <div className="flex w-full flex-col lg:flex-row gap-16">
+        <div className="flex  flex-col">
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Monthly Sales Data
           </h2>
@@ -193,11 +197,11 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex justify-center flex-col mt-2">
-        <h2 className="flex justify-center text-2xl font-semibold text-gray-800 font-roboto">
+      <div className="flex justify-start flex-col mt-4">
+        <h2 className="flex justify-start text-2xl font-semibold text-gray-800 font-roboto">
           Order Types Distribution
         </h2>
-        <div className="flex justify-center mt-2 cursor-pointer">
+        <div className="flex justify-start mt-2 cursor-pointer">
           <Pie
             data={orderTypeChartData}
             options={{
@@ -211,7 +215,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row justify-around mt-2 ">
+      <div className="flex flex-col lg:flex-row gap-16 mt-12 ">
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
             Top 5 Items Sold
@@ -230,7 +234,7 @@ const Dashboard = () => {
 
         <div className="flex flex-col">
           <h2 className="text-2xl font-semibold text-gray-800 font-roboto">
-            Average Ratings of Food Items
+            Average Ratings of Items
           </h2>
           <div className="flex justify-center mt-2 cursor-pointer">
             <Bar
