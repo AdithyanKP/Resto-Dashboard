@@ -34,6 +34,11 @@ const commonChartOptions = {
   },
 };
 
+const dataSortHelper = (data) => {
+  const sortedEntries = Object.entries(data).sort((a, b) => b[1] - a[1]);
+  return sortedEntries;
+};
+
 const Dashboard = () => {
   const {
     monthlySalesChartData,
@@ -85,13 +90,36 @@ const Dashboard = () => {
       }
     });
 
+    //month details sorting
+    const monthOrder = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const sortedMonthlySalesData = monthOrder.reduce((acc, month) => {
+      if (monthlySalesData[month]) {
+        acc[month] = monthlySalesData[month];
+      }
+      return acc;
+    }, {});
+
     // Prepare Chart Data
     const monthlySalesChartData = {
-      labels: Object.keys(monthlySalesData),
+      labels: Object.keys(sortedMonthlySalesData),
       datasets: [
         {
           label: "Monthly Sales",
-          data: Object.values(monthlySalesData),
+          data: Object.values(sortedMonthlySalesData),
           backgroundColor: "rgba(75, 192, 192, 0.6)",
           borderColor: "rgba(75, 192, 192, 1)",
           borderWidth: 1,
@@ -127,12 +155,16 @@ const Dashboard = () => {
       ],
     };
 
+    const sortedItemSoldData = Object.fromEntries(
+      dataSortHelper(itemsSoldData)
+    );
+
     const topItemsChartData = {
-      labels: Object.keys(itemsSoldData).slice(0, 5),
+      labels: Object.keys(sortedItemSoldData).slice(0, 5),
       datasets: [
         {
           label: "Top Items Sold",
-          data: Object.values(itemsSoldData).slice(0, 5),
+          data: Object.values(sortedItemSoldData).slice(0, 5),
           backgroundColor: "rgba(255, 206, 86, 0.6)",
         },
       ],
@@ -145,12 +177,18 @@ const Dashboard = () => {
       ).toFixed(1);
     }
 
+    const sortedEntries = Object.entries(averageRatings).sort(
+      (a, b) => b[1] - a[1]
+    );
+
+    const sortedRatings = Object.fromEntries(dataSortHelper(averageRatings));
+
     const ratingsChartData = {
-      labels: Object.keys(averageRatings),
+      labels: Object.keys(sortedRatings),
       datasets: [
         {
           label: "Average Ratings",
-          data: Object.values(averageRatings),
+          data: Object.values(sortedRatings),
           backgroundColor: "rgba(153, 102, 255, 0.6)",
         },
       ],
