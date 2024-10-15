@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Restaurant Dashboard
+
+A **Restaurant Dashboard** built with Next.js and Tailwind CSS, designed to display key business metrics such as sales, order types, popular items, and more.
+
+## Features
+
+- **Monthly Sales Chart**: A bar chart showing the monthly sales.
+- **Yearly Sales Chart**: A bar chart showing the yearly sales.
+- **Order Type Distribution**: A pie chart representing the different types of orders (dine-in, takeout, delivery).
+- **Top 5 Most Ordered Items**: A chart displaying the five most frequently ordered items.
+
+## Tech Stack
+
+- **Next.js**: React framework for server-side rendering and static site generation.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
+- **Chart.js**: Used for generating charts.
+- **Vercel**: Deployed on Vercel for fast and easy deployment.
 
 ## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+You can check out the live version of the app here: [Live Demo](https://resto-dashboard-drab.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Prerequisites
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Running Locally
 
-## Learn More
+1. Clone the repository:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   https://github.com/AdithyanKP/Resto-Dashboard.git
+   
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Move into the src directory:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   cd Resto-Dashboard/src
+  
+   
+3. Install dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm i
+   
+3. Start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   npm run dev
+   
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Open your browser and go to http://localhost:3000 to view the application.
